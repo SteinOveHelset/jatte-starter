@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<h1 class="mb-6 text-xl">Login</h1>
+
+<form method="post" action=".">
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="id_email">Email</label>
+
+        <input type="email" name="email" id="id_email" class="w-full py-4 px-6 rounded-xl border">
+    </div>
+
+    <div class="mb-4">
+        <label for="id_password">Password</label>
+
+        <input type="password" name="password" id="id_password" class="w-full py-4 px-6 rounded-xl border">
+    </div>
+
+    {% if form.errors or form.non_field_errors %}
+        <div class="mb-4 p-6 bg-rose-100 rounded-xl">
+            {% for field in form %}
+                {{ field.errors }}
+            {% endfor %}
+
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    <button class="py-2 px-6 bg-rose-600 text-white rounded-xl">Submit</button>
+</form>
+{% endblock %}

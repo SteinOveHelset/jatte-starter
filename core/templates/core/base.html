@@ -1,0 +1,45 @@
+{% load static %}
+
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.min.css' %}">
+    </head>
+
+    <body>
+        <div class="p-2">
+            <nav class="p-6 bg-rose-600 text-white flex justify-between items-center rounded-xl">
+                <a href="{% url 'core:index' %}" class="text-xl">Jatte</a>
+
+                <div class="flex items-center space-x-4">
+                    <a href="{% url 'core:index' %}">Home</a>
+                    <a href="{% url 'core:about' %}">About</a>
+                </div>
+            </nav>
+
+            <main class="max-w-6xl mx-auto p-6">
+                {% if messages %}
+                    <div class="message mb-6 p-6 bg-gray-800 text-white rounded-xl">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% block content %}
+                {% endblock %}
+            </main>
+        </div>
+
+        <footer class="py-12 px-6 bg-gray-800 text-white text-center text-xs">
+            <p>Copyright (c) 2023 - Jatte</p>
+        </footer>
+
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>
